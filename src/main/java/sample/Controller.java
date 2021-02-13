@@ -1,6 +1,7 @@
 package sample;
 
 
+import com.github.kiulian.downloader.YoutubeException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 public class Controller {
     @FXML
@@ -92,6 +95,21 @@ public class Controller {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
     }
+
+    public void downloadVid() throws IOException, YoutubeException, InterruptedException, ExecutionException, TimeoutException {
+        System.out.println("began");
+        FormatEnum[] format = new FormatEnum[3];
+        format[0] = mp4_HighCB.isSelected() ? FormatEnum.mp4_High : null;
+        format[1] = mp3_CB.isSelected() ? FormatEnum.mp3 : null;
+        format[2] = mp4_LowCB.isSelected() ? FormatEnum.mp4_Low : null;
+        for (FormatEnum form : format) {
+            if (form != null) {
+                Downloader.downloadVideo(form,linkField.getText(),pathField.getText());
+            }
+        }
+        System.out.println("done");
+    }
+
 //    public void downloadVideo() throws IOException, YoutubeException {
 //        //YTdownloader ytD= new YTdownloader();
 //        //ytD.downloadVideo("doesnt matter","STKSpaXqrus&ab_channel=Wave");

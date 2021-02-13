@@ -11,7 +11,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <TableView fx:id="videoTable" layoutX="48.0" layoutY="254.0" prefHeight="200.0" prefWidth="497.0" />
-      <Button fx:id="downloadBtn" layoutX="597.0" layoutY="40.0" mnemonicParsing="false"  text="Download" />
+      <Button fx:id="dwnBtn" layoutX="597.0" layoutY="40.0" mnemonicParsing="false" onAction="#downloadVid" text="Download" />
       <Button layoutX="606.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeVideo" text="Remove" />
       <CheckBox fx:id="mp4_HighCB" layoutX="599.0" layoutY="85.0" mnemonicParsing="false" text="mp4 high quality" />
       <CheckBox fx:id="mp3_CB" layoutX="599.0" layoutY="133.0" mnemonicParsing="false" text="mp3" />
