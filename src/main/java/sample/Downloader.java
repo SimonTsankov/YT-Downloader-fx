@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Struct;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -69,26 +70,30 @@ public class Downloader {
                     videoFormat = video.findFormatByItag(18);
             default -> videoFormat= video.findFormatByItag(141); // default 720p video
         }
+
         Future<File> future = video.downloadAsync(videoFormat, outputDir, new OnYoutubeDownloadListener() {
             @Override
             public void onDownloading(int progress) {
                 System.out.printf("Downloaded %d%%\n", progress);
+
             }
 
             @Override
             public void onFinished(File file) {
                 System.out.println("Finished file: " + file);
+
             }
 
             @Override
             public void onError(Throwable throwable) {
                 System.out.println("Error: " + throwable.getLocalizedMessage());
+
             }
         });
         System.out.println("DONE in: "+ ( System.currentTimeMillis()-startTime)+"ms");
     }
 
-    public String getVideoName(String link) throws YoutubeException {
+    public static String getVideoName(String link) throws YoutubeException {
         String videoId = link.substring(32);
         YoutubeDownloader downloader = new YoutubeDownloader();
         VideoDetails details = downloader.getVideo(videoId).details();

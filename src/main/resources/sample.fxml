@@ -8,24 +8,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" style="-fx-background-image: url('https://i.ibb.co/Yh23dtt/background.png');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <TableView fx:id="videoTable" layoutX="48.0" layoutY="254.0" prefHeight="200.0" prefWidth="497.0" />
-      <Button fx:id="dwnBtn" layoutX="597.0" layoutY="40.0" mnemonicParsing="false" onAction="#downloadVid" text="Download" />
-      <Button layoutX="606.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeVideo" text="Remove" />
-      <CheckBox fx:id="mp4_HighCB" layoutX="599.0" layoutY="85.0" mnemonicParsing="false" text="mp4 high quality" />
-      <CheckBox fx:id="mp3_CB" layoutX="599.0" layoutY="133.0" mnemonicParsing="false" text="mp3" />
-      <CheckBox fx:id="mp4_LowCB" layoutX="599.0" layoutY="178.0" mnemonicParsing="false" text="mp4 low quality" />
+      <TableView fx:id="videoTable" layoutX="37.0" layoutY="261.0" opacity="0.93" prefHeight="207.0" prefWidth="564.0" style="-fx-background-image: C:\Users\User\IdeaProjects\YT downloade 2.0;" />
+      <Button fx:id="dwnBtn" layoutX="590.0" layoutY="40.0" mnemonicParsing="false" onAction="#downloadVid" text="Download" />
+      <Button layoutX="625.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeVideo" text="Remove" />
+      <CheckBox fx:id="mp4_HighCB" layoutX="614.0" layoutY="105.0" mnemonicParsing="false" text="mp4 high quality" />
+      <CheckBox fx:id="mp3_CB" layoutX="614.0" layoutY="135.0" mnemonicParsing="false" text="mp3" />
+      <CheckBox fx:id="mp4_LowCB" layoutX="614.0" layoutY="165.0" mnemonicParsing="false" text="mp4 low quality" />
       <Button fx:id="LinkBtn" layoutX="758.0" layoutY="40.0" mnemonicParsing="false" onAction="#getClipBoard" text="Get link to download video" />
       <TextField fx:id="linkField" layoutX="48.0" layoutY="40.0" promptText="youtube.com/example" />
       <Text layoutX="48.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Link:" />
       <Button fx:id="addButton" layoutX="245.0" layoutY="40.0" mnemonicParsing="false" onAction="#addVideo" text="Add to download list" />
-      <TextField fx:id="pathField" layoutX="48.0" layoutY="90.0" promptText="download path" />
+      <TextField fx:id="pathField" layoutX="48.0" layoutY="90.0" promptText="download path" text="D:\Pictures\Camera Roll" />
       <Text layoutX="49.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path:" />
-      <Text fx:id="Errors_Confirmatio" layoutX="435.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+      <Text fx:id="Errors_Confirmatio" layoutX="634.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
          <font>
-            <Font size="20.0" />
+            <Font size="16.0" />
          </font>
       </Text>
+      <Button fx:id="dwnAll" layoutX="625.0" layoutY="319.0" mnemonicParsing="false" onAction="#downloadList" text="Download all " />
+      <Button layoutX="245.0" layoutY="90.0" mnemonicParsing="false" onAction="#ChoosePath" text="Choose Path" />
    </children>
 </Pane>

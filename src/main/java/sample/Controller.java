@@ -9,11 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
@@ -49,30 +53,32 @@ public class Controller {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         formatColumn.setCellValueFactory(new PropertyValueFactory<>("format"));
         linkColumn.setCellValueFactory(new PropertyValueFactory<>("link"));
-        videosList.add(new YTVideo("test", FormatEnum.mp4_High, "test2"));
+        linkColumn.setPrefWidth(200);
+        nameColumn.setPrefWidth(300);
+        formatColumn.setPrefWidth(70);
         videoTable.setItems(videosList);
         videoTable.getColumns().addAll(nameColumn, formatColumn, linkColumn);
         System.out.println("test");
     }
 
-    public void addVideo() {//TODO check if link is valid, check if any format is selected!
+    public void addVideo() throws YoutubeException {//TODO check if link is valid, check if any format is selected!
         //TODO make a function that gives the videos name and takes the link as a parameter!
         Boolean added = false;
         FormatEnum[] format = new FormatEnum[3];
         format[0] = mp4_HighCB.isSelected() ? FormatEnum.mp4_High : null;
         format[1] = mp3_CB.isSelected() ? FormatEnum.mp3 : null;
         format[2] = mp4_LowCB.isSelected() ? FormatEnum.mp4_Low : null;
-        for (FormatEnum form : format) {
-            if (form != null) {
-                videosList.add(new YTVideo("callFunctionTogetname!", form, linkField.getText()));
-                added = true;
-            }
-        }
-        if (added)
-            display("Videos added!", true);
-        else display("Nothing was added", false);
-
-        videoTable.setItems(videosList);
+        System.out.println((linkField.getText().substring(32)));
+        if(linkField.getText().substring(0,32).equals("https://www.youtube.com/watch?v=")) {
+            for (FormatEnum form : format)
+                if (form != null) {
+                    videosList.add(new YTVideo(Downloader.getVideoName(linkField.getText()), form, linkField.getText()));
+                    added = true;
+                }
+            if (added) display("Videos added!", true);
+            else display("Nothing was added", false);
+            videoTable.setItems(videosList);
+        }else display("Not a valid youtube link!", false);
     }
 
     public void removeVideo() {
@@ -89,7 +95,7 @@ public class Controller {
         Errors_Confirmatio.setText(text);
     }
 
-    public void getClipBoard(){
+    public void getClipBoard() {
         String myString = "This text will be copied into clipboard";
         StringSelection stringSelection = new StringSelection(myString);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -104,14 +110,25 @@ public class Controller {
         format[2] = mp4_LowCB.isSelected() ? FormatEnum.mp4_Low : null;
         for (FormatEnum form : format) {
             if (form != null) {
-                Downloader.downloadVideo(form,linkField.getText(),pathField.getText());
+                Downloader.downloadVideo(form, linkField.getText(), pathField.getText());
             }
         }
         System.out.println("done");
     }
 
-//    public void downloadVideo() throws IOException, YoutubeException {
-//        //YTdownloader ytD= new YTdownloader();
-//        //ytD.downloadVideo("doesnt matter","STKSpaXqrus&ab_channel=Wave");
-//    }
+    public void downloadList() throws InterruptedException, ExecutionException, YoutubeException, TimeoutException, IOException {
+        for (YTVideo video :
+                videosList) {
+            Downloader.downloadVideo(video.getFormat(), video.getLink(), pathField.getText());
+        }
+    }
+
+    public void ChoosePath() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(null);
+        System.out.println(selectedDirectory.getPath());
+        pathField.setText(selectedDirectory.getPath());
+
+    }
+
 }
