@@ -10,28 +10,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" style="-fx-background-image: url('https://i.ibb.co/0mZ7kWj/Untitled-1.png');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" style="-fx-background-image: url('https://i.ibb.co/SrVZq5v/Untitled-1.png');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <TableView fx:id="videoTable" layoutX="39.0" layoutY="261.0" opacity="0.91" prefHeight="207.0" prefWidth="562.0" style="-fx-background-image: C:\Users\User\IdeaProjects\YT downloade 2.0;" />
-      <Button fx:id="dwnBtn" layoutX="590.0" layoutY="40.0" mnemonicParsing="false" onAction="#downloadVid" text="Download" />
+      <Button fx:id="dwnBtn" layoutX="590.0" layoutY="40.0" mnemonicParsing="false" onAction="#downloadVid" style="-fx-background-color: LIGHTBLUE;" text="Download" />
       <Button layoutX="625.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeVideo" text="Remove" />
       <CheckBox fx:id="mp4_HighCB" layoutX="614.0" layoutY="105.0" mnemonicParsing="false" text="mp4 high quality" />
       <CheckBox fx:id="mp3_CB" layoutX="614.0" layoutY="135.0" mnemonicParsing="false" text="mp3" />
       <CheckBox fx:id="mp4_LowCB" layoutX="614.0" layoutY="165.0" mnemonicParsing="false" text="mp4 low quality" />
-      <Button fx:id="LinkBtn" layoutX="758.0" layoutY="40.0" mnemonicParsing="false" onAction="#getClipBoard" text="Get link to download video" />
-      <TextField fx:id="linkField" layoutX="48.0" layoutY="40.0" promptText="youtube.com/example" />
+      <Button fx:id="LinkBtn" layoutX="758.0" layoutY="40.0" mnemonicParsing="false" onAction="#getClipBoard" style="-fx-background-color: ORANGE;" text="Get link to download video" />
+      <TextField fx:id="linkField" layoutX="48.0" layoutY="40.0" prefHeight="25.0" prefWidth="377.0" promptText="youtube.com/example" />
       <Text layoutX="48.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Link:" />
-      <Button fx:id="addButton" layoutX="245.0" layoutY="40.0" mnemonicParsing="false" onAction="#addVideo" text="Add to download list" />
-      <TextField fx:id="pathField" layoutX="48.0" layoutY="90.0" promptText="download path" text="D:\Pictures\Camera Roll" />
+      <Button fx:id="addButton" layoutX="450.0" layoutY="34.0" mnemonicParsing="false" onAction="#addVideo" text="Add to download list" />
+      <TextField fx:id="pathField" layoutX="48.0" layoutY="90.0" prefHeight="25.0" prefWidth="349.0" promptText="download path" text="D:\Pictures\Camera Roll" />
       <Text layoutX="49.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path:" />
       <Text fx:id="Errors_Confirmatio" layoutX="634.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Button fx:id="dwnAll" layoutX="625.0" layoutY="319.0" mnemonicParsing="false" onAction="#downloadList" text="Download all " />
-      <Button layoutX="245.0" layoutY="90.0" mnemonicParsing="false" onAction="#ChoosePath" style="-fx-background-image: url('https://cdn.iconscout.com/icon/free/png-256/my-files-1-461722.png');" text="Choose Path" />
-      <ImageView fitHeight="41.0" fitWidth="45.0" layoutX="328.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="dwnAll" layoutX="625.0" layoutY="319.0" mnemonicParsing="false" onAction="#downloadList" style="-fx-background-color: LIGHTBLUE;" text="Download all " />
+      <Button layoutX="450.0" layoutY="84.0" mnemonicParsing="false" onAction="#ChoosePath" style="-fx-background-image: url('https://cdn.iconscout.com/icon/free/png-256/my-files-1-461722.png');" text="Choose Path" />
+      <ImageView fitHeight="41.0" fitWidth="45.0" layoutX="533.0" layoutY="76.0" onMouseClicked="#ChoosePath" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@my-files-1-461722.png" />
          </image>
@@ -41,7 +41,7 @@
             <Image url="@Downloads-1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="64.0" fitWidth="59.0" layoutX="720.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="59.0" layoutX="720.0" layoutY="309.0" onMouseClicked="#downloadList" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Downloads-1.png" />
          </image>

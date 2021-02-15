@@ -9,10 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -46,7 +44,7 @@ public class Controller {
     private TextField pathField;
 
     @FXML
-    private Text Errors_Confirmatio;
+    public  Text Errors_Confirmation;
 
     public void initialize() {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -60,8 +58,7 @@ public class Controller {
 
     }
 
-    public void addVideo() throws YoutubeException {//TODO check if link is valid, check if any format is selected!
-        //TODO make a function that gives the videos name and takes the link as a parameter!
+    public void addVideo() throws YoutubeException {
         Boolean added = false, error = false;
         FormatEnum[] format = new FormatEnum[3];
         format[0] = mp4_HighCB.isSelected() ? FormatEnum.mp4_High : null;
@@ -95,9 +92,9 @@ public class Controller {
         }
     }
 
-    public void display(String text, boolean positive) {
-        Errors_Confirmatio.setFill(positive ? Color.GREEN : Color.RED);
-        Errors_Confirmatio.setText(text);
+    public  void display(String text, boolean positive) {
+        Errors_Confirmation.setFill(positive ? Color.GREEN : Color.RED);
+        Errors_Confirmation.setText(text);
     }
 
     public void getClipBoard() throws YoutubeException {
@@ -131,7 +128,6 @@ public class Controller {
                 Downloader.downloadVideo(form, linkField.getText(), pathField.getText());
             }
         }
-        System.out.println("done");
     }
 
     public void downloadList() throws InterruptedException, ExecutionException, YoutubeException, TimeoutException, IOException {
@@ -144,9 +140,7 @@ public class Controller {
     public void ChoosePath() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(null);
-        System.out.println(selectedDirectory.getPath());
         pathField.setText(selectedDirectory.getPath());
-
     }
 
 }

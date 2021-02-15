@@ -8,7 +8,7 @@ import com.github.kiulian.downloader.model.YoutubeVideo;
 import com.github.kiulian.downloader.model.formats.AudioFormat;
 import com.github.kiulian.downloader.model.formats.AudioVideoFormat;
 import com.github.kiulian.downloader.model.formats.Format;
-
+import javafx.scene.text.Text;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -104,7 +104,6 @@ public class Downloader {
         downloader.setParserRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36");
         downloader.setParserRetryOnFailure(1);
         YoutubeVideo video = downloader.getVideo(videoId);
-
         Format format;
         for (int i = 5; i < 47; i++) {
             format = video.findFormatByItag(i);
