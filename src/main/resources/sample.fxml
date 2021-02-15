@@ -4,13 +4,15 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" style="-fx-background-image: url('https://i.ibb.co/Yh23dtt/background.png');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="944.0" style="-fx-background-image: url('https://i.ibb.co/0mZ7kWj/Untitled-1.png');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <TableView fx:id="videoTable" layoutX="37.0" layoutY="261.0" opacity="0.93" prefHeight="207.0" prefWidth="564.0" style="-fx-background-image: C:\Users\User\IdeaProjects\YT downloade 2.0;" />
+      <TableView fx:id="videoTable" layoutX="39.0" layoutY="261.0" opacity="0.91" prefHeight="207.0" prefWidth="562.0" style="-fx-background-image: C:\Users\User\IdeaProjects\YT downloade 2.0;" />
       <Button fx:id="dwnBtn" layoutX="590.0" layoutY="40.0" mnemonicParsing="false" onAction="#downloadVid" text="Download" />
       <Button layoutX="625.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeVideo" text="Remove" />
       <CheckBox fx:id="mp4_HighCB" layoutX="614.0" layoutY="105.0" mnemonicParsing="false" text="mp4 high quality" />
@@ -28,6 +30,21 @@
          </font>
       </Text>
       <Button fx:id="dwnAll" layoutX="625.0" layoutY="319.0" mnemonicParsing="false" onAction="#downloadList" text="Download all " />
-      <Button layoutX="245.0" layoutY="90.0" mnemonicParsing="false" onAction="#ChoosePath" text="Choose Path" />
+      <Button layoutX="245.0" layoutY="90.0" mnemonicParsing="false" onAction="#ChoosePath" style="-fx-background-image: url('https://cdn.iconscout.com/icon/free/png-256/my-files-1-461722.png');" text="Choose Path" />
+      <ImageView fitHeight="41.0" fitWidth="45.0" layoutX="328.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@my-files-1-461722.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="47.0" fitWidth="45.0" layoutX="661.0" layoutY="30.0" onMouseClicked="#downloadVid" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Downloads-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="59.0" layoutX="720.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Downloads-1.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

@@ -49,7 +49,6 @@ public class Controller {
     private Text Errors_Confirmatio;
 
     public void initialize() {
-        System.out.println("test");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         formatColumn.setCellValueFactory(new PropertyValueFactory<>("format"));
         linkColumn.setCellValueFactory(new PropertyValueFactory<>("link"));
@@ -58,33 +57,39 @@ public class Controller {
         formatColumn.setPrefWidth(70);
         videoTable.setItems(videosList);
         videoTable.getColumns().addAll(nameColumn, formatColumn, linkColumn);
-        System.out.println("test");
+
     }
 
     public void addVideo() throws YoutubeException {//TODO check if link is valid, check if any format is selected!
         //TODO make a function that gives the videos name and takes the link as a parameter!
-        Boolean added = false;
+        Boolean added = false, error = false;
         FormatEnum[] format = new FormatEnum[3];
         format[0] = mp4_HighCB.isSelected() ? FormatEnum.mp4_High : null;
         format[1] = mp3_CB.isSelected() ? FormatEnum.mp3 : null;
         format[2] = mp4_LowCB.isSelected() ? FormatEnum.mp4_Low : null;
         System.out.println((linkField.getText().substring(32)));
-        if(linkField.getText().substring(0,32).equals("https://www.youtube.com/watch?v=")) {
+        if (linkField.getText().substring(0, 32).equals("https://www.youtube.com/watch?v=")) {
             for (FormatEnum form : format)
                 if (form != null) {
-                    videosList.add(new YTVideo(Downloader.getVideoName(linkField.getText()), form, linkField.getText()));
+                    try {
+                        videosList.add(new YTVideo(Downloader.getVideoName(linkField.getText()), form, linkField.getText()));
+                    } catch (Exception e) {
+                        error = true;
+                    }
                     added = true;
                 }
-            if (added) display("Videos added!", true);
-            else display("Nothing was added", false);
+            if (error) {
+                display("This video doesnt exist!", false);
+            } else if (added) display("Video\\s added!", true);
+            else display("No format was selected! ", false);
             videoTable.setItems(videosList);
-        }else display("Not a valid youtube link!", false);
+        } else display("Not a valid youtube link!", false);
     }
 
     public void removeVideo() {
         try {
             videosList.remove(videoTable.getSelectionModel().getSelectedItem());
-            display("Removed", true);
+            display("Removed!", true);
         } catch (Exception e) {
             display("Nothing selected!", false);
         }
@@ -95,11 +100,24 @@ public class Controller {
         Errors_Confirmatio.setText(text);
     }
 
-    public void getClipBoard() {
-        String myString = "This text will be copied into clipboard";
-        StringSelection stringSelection = new StringSelection(myString);
+    public void getClipBoard() throws YoutubeException {
+        FormatEnum format[] = new FormatEnum[3];
+        format[0] = mp4_HighCB.isSelected() ? FormatEnum.mp4_High : null;
+        format[1] = mp3_CB.isSelected() ? FormatEnum.mp3 : null;
+        format[2] = mp4_LowCB.isSelected() ? FormatEnum.mp4_Low : null;
+        StringSelection stringSelection = null;
+        for (FormatEnum form : format) {
+            if (form != null) {
+                stringSelection = new StringSelection(Downloader.getDwnLink(linkField.getText(), form));
+                break;
+            }
+        }
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
+        if (stringSelection != null) {
+            clipboard.setContents(stringSelection, null);
+            display("Link added to clipboard!",true);
+        }
+        else display("Nothing was selected or added!", false);
     }
 
     public void downloadVid() throws IOException, YoutubeException, InterruptedException, ExecutionException, TimeoutException {
