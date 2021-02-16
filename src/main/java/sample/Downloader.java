@@ -23,9 +23,7 @@ public class Downloader {
     }
 
     public static void downloadVideo(FormatEnum format, String link, String path) throws YoutubeException, IOException, InterruptedException, ExecutionException, TimeoutException {
-        long startTime = System.currentTimeMillis();
         String videoId = link.substring(32);
-        System.out.println(videoId);
         YoutubeDownloader downloader = new YoutubeDownloader();
         downloader.setParserRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36");
         downloader.setParserRetryOnFailure(1);
@@ -65,7 +63,6 @@ public class Downloader {
                 System.out.println("Error: " + throwable.getLocalizedMessage());
             }
         });
-        System.out.println("DONE in: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
 

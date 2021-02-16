@@ -24,7 +24,7 @@
       <Button fx:id="addButton" layoutX="450.0" layoutY="34.0" mnemonicParsing="false" onAction="#addVideo" text="Add to download list" />
       <TextField fx:id="pathField" layoutX="48.0" layoutY="90.0" prefHeight="25.0" prefWidth="349.0" promptText="download path" text="D:\Pictures\Camera Roll" />
       <Text layoutX="49.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path:" />
-      <Text fx:id="Errors_Confirmatio" layoutX="634.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+      <Text fx:id="Errors_Confirmation" layoutX="634.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
          <font>
             <Font size="16.0" />
          </font>
@@ -46,5 +46,6 @@
             <Image url="@Downloads-1.png" />
          </image>
       </ImageView>
+      <CheckBox fx:id="playlist_CB" layoutX="772.0" layoutY="165.0" mnemonicParsing="false" text="Playlist" />
    </children>
 </Pane>
